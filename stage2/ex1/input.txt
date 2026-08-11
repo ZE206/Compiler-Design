@@ -4,3 +4,4 @@ begin
     d = a + 2 * b;
     write (a+d);
 end;
+out 
