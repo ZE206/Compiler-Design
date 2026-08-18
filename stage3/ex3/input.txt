@@ -1,0 +1,13 @@
+begin
+  a = 1;
+  do
+    write(a);
+    a = a + 1;
+  while (a <= 3);
+
+  b = 1;
+  repeat
+    write(b);
+    b = b + 1;
+  until (b > 3);
+end;
