@@ -1,0 +1,7 @@
+decl
+    int arr[5];
+enddecl
+begin
+    arr[10] = 50; 
+    write("FAIL");
+end;

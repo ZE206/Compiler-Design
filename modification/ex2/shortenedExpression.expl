@@ -1,0 +1,39 @@
+decl
+    int a, b;
+enddecl
+
+int main() {
+    decl
+    enddecl
+    begin
+        a = 10;
+        
+        a += 5;
+        write("a += 5 :");
+        write(a); // Should be 15
+        
+        a -= 3;
+        write("a -= 3 :");
+        write(a); // Should be 12
+        
+        a *= 2;
+        write("a *= 2 :");
+        write(a); // Should be 24
+        
+        a /= 4;
+        write("a /= 4 :");
+        write(a); // Should be 6
+        
+        a %= 4;
+        write("a %= 4 :");
+        write(a); // Should be 2
+
+        // Testing with variables
+        b = 10;
+        a += b;
+        write("a += b :");
+        write(a); // Should be 12
+
+        return 1;
+    end
+}

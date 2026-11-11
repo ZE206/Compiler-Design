@@ -1,0 +1,26 @@
+decl
+    int choice;
+enddecl
+
+int main() {
+decl
+enddecl
+begin
+    write("Enter 1, 2, or 3:");
+    read(choice);
+    
+    switch (choice) {
+        case 1: 
+            write("One");
+        case 2:
+            write("Two");
+        case choice + 1: // Testing if expressions work as cases!
+            write("Dynamic");
+        default:
+            write("Invalid");
+    }
+
+    write("Done");
+    return 1;
+end
+}

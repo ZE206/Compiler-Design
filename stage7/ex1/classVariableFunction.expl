@@ -1,0 +1,36 @@
+type
+    Node {
+        int a;
+    }
+endtype
+
+decl
+    Node obj;
+    int update(Node n, int x);
+enddecl
+
+int update(Node n, int x) {
+begin
+    n.a = x;
+    return n.a;
+end
+}
+
+int main() {
+decl
+    int result;
+enddecl
+begin
+    result = initialize();
+
+    obj = alloc();
+    obj.a = 10;
+
+    result = update(obj, 99);
+
+    write(result);
+    write(obj.a);
+
+    return 0;
+end
+}

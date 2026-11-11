@@ -267,7 +267,7 @@ int codeGen(struct tnode *t) {
         
         case NODE_BREAK:{
             if(loop_top>=0){
-                fprintf(target_file,"JMP L%d\n",label_count-1);
+                fprintf(target_file,"JMP L%d\n",loop_stack[loop_top].loop_end);
             }
         }
 

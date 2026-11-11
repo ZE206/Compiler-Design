@@ -1,0 +1,43 @@
+class
+Math {
+    decl
+        int add(int a);
+        int add(int a, int b);
+    enddecl
+
+    int add(int a) {
+        decl enddecl
+        begin
+            return a + 10;
+        end
+    }
+
+    int add(int a, int b) {
+        decl enddecl
+        begin
+            return a + b;
+        end
+    }
+}
+endclass
+
+decl
+    Math m;
+    int temp;
+enddecl
+
+int main() {
+    decl enddecl
+    begin
+        temp = initialize();
+        m = new(Math);
+        
+        write("add(5):");
+        write(m.add(5));       // Calls add_int
+        
+        write("add(5,20):");
+        write(m.add(5, 20));   // Calls add_int_int
+        
+        return 1;
+    end
+}

@@ -1,0 +1,45 @@
+class
+Parent {
+    decl
+        int printMsg();
+    enddecl
+    int printMsg() {
+        decl enddecl
+        begin
+            write("Parent Code");
+            return 1;
+        end
+    }
+}
+Child extends Parent {
+    decl
+        int printMsg();
+    enddecl
+    int printMsg() {
+        decl
+            int temp;
+        enddecl
+        begin
+            write("Child Code");
+            // Call the parent's overridden method
+            temp = super.printMsg();
+            return 1;
+        end
+    }
+}
+endclass
+decl
+    Child obj;
+    int n;
+enddecl
+int main() {
+    decl enddecl
+    begin
+        n = initialize();
+        obj = new(Child);
+        
+        // This will print "Child Code", then "Parent Code"
+        n = obj.printMsg();
+        return 1;
+    end
+}

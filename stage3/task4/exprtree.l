@@ -1,57 +1,77 @@
-%{
-    #include <stdio.h>
-    #include <stdlib.h>
-    #include <string.h>
-    #include "exprtree.h"
-    #include "y.tab.h"
-%}
+%{[cite: 4]
+#include <stdio.h>[cite: 4]
+#include <stdlib.h>[cite: 4]
+#include <string.h>[cite: 4]
+#include "symboltable.h"[cite: 4]
+#include "y.tab.h"[cite: 4]
+%}[cite: 4]
 
-%%
+%%[cite: 4]
 
-"begin"     { return BEGIN_TOK; }
-"end"       { return END_TOK; }
-"read"      { return READ; }
-"write"     { return WRITE; }
+"decl"          { return DECL; }[cite: 4]
+"enddecl"       { return ENDDECL; }[cite: 4]
+"int"           { return INT; }[cite: 4]
+"str"           { return STR; }[cite: 4]
 
-"if"        { return IF; }
-"then"      { return THEN; }
-"else"      { return ELSE; }
-"endif"     { return ENDIF; }
-"while"     { return WHILE; }
-"do"        { return DO; }
-"endwhile"  { return ENDWHILE; }
-"continue"  { return CONTINUE;}
-"break"     { return BREAK; }
+"begin"         { return BEGIN_TOK; }[cite: 4]
+"end"           { return END_TOK; }[cite: 4]
+"read"          { return READ; }[cite: 4]
+"write"         { return WRITE; }[cite: 4]
+"if"            { return IF; }[cite: 4]
+"then"          { return THEN; }[cite: 4]
+"else"          { return ELSE; }[cite: 4]
+"endif"         { return ENDIF; }[cite: 4]
+"while"         { return WHILE; }[cite: 4]
+"do"            { return DO; }[cite: 4]
+"endwhile"      { return ENDWHILE; }[cite: 4]
+"repeat"        { return REPEAT; }[cite: 4]
+"until"         { return UNTIL; }[cite: 4]
+"break"         { return BREAK; }[cite: 4]
+"continue"      { return CONTINUE; }[cite: 4]
 
-"<="        { return LE; }
-">="        { return GE; }
-"=="        { return EQ; }
-"!="        { return NE; }
-"<"         { return LT; }
-">"         { return GT; }
+"+"             { return PLUS; }[cite: 4]
+"-"             { return MINUS; }[cite: 4]
+"*"             { return MUL; }[cite: 4]
+"/"             { return DIV; }[cite: 4]
+"="             { return ASSIGN; }[cite: 4]
 
-"+"         { return PLUS; }
-"-"         { return MINUS; }
-"*"         { return MUL; }
-"/"         { return DIV; }
-"="         { return ASSIGN; }
+"<"             { return LT; }[cite: 4]
+">"             { return GT; }[cite: 4]
+"<="            { return LE; }[cite: 4]
+">="            { return GE; }[cite: 4]
+"=="            { return EQ; }[cite: 4]
+"!="            { return NE; }[cite: 4]
 
-[0-9]+      { 
-                yylval.no = createTree(atoi(yytext), TYPE_INT, NULL, NODE_NUM, NULL, NULL); 
-                return NUM; 
-            }
+[0-9]+          {[cite: 4]
+                    yylval.val = atoi(yytext);[cite: 4]
+                    return NUM;[cite: 4]
+                }[cite: 4]
 
-[a-z]       { 
-                yylval.no = createTree(0, TYPE_INT, yytext, NODE_VAR, NULL, NULL); 
-                return ID; 
-            }
+\"(\\.|[^\"\\])*\" {[cite: 4]
+                    /* Strip surrounding quotes */[cite: 4]
+                    int len = strlen(yytext);[cite: 4]
+                    char *str = (char*)malloc(len - 1);[cite: 4]
+                    strncpy(str, yytext + 1, len - 2);[cite: 4]
+                    str[len - 2] = '\0';[cite: 4]
+                    yylval.varname = str;[cite: 4]
+                    return STRING;[cite: 4]
+                }[cite: 4]
 
-[ \t\n]+    ; /* Skip whitespace */
-[;()=]      { return *yytext; }
-.           { printf("Unknown character: %s\n", yytext); exit(1); }
+[a-zA-Z][a-zA-Z0-9_]* {[cite: 4]
+                    yylval.varname = strdup(yytext);[cite: 4]
+                    return ID;[cite: 4]
+                }[cite: 4]
 
-%%
+[\[\]();,]      { return *yytext; }[cite: 4]
+[ \t\n]         { /* skip whitespace */ }[cite: 4]
 
-int yywrap(void) {
-    return 1;
-}
+.               {[cite: 4]
+                    fprintf(stderr, "Lexical Error: Unknown character '%s'\n", yytext);[cite: 4]
+                    exit(1);[cite: 4]
+                }[cite: 4]
+
+%%[cite: 4]
+
+int yywrap() {[cite: 4]
+    return 1;[cite: 4]
+}[cite: 4]

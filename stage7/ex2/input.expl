@@ -1,0 +1,34 @@
+class
+Box {
+decl
+    int value;
+enddecl
+}
+endclass
+
+decl
+    int test();
+enddecl
+
+int test() {
+decl
+    Box b;
+enddecl
+begin
+    b = new(Box);
+    b.value = 42;
+    return b.value;
+end
+}
+
+int main() {
+decl
+    int result;
+enddecl
+begin
+    
+    result = test();
+    write(result);
+    return 0;
+end
+}

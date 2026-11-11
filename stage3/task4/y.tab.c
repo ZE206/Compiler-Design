@@ -1435,7 +1435,7 @@ yyreduce:
                                       {
             /* 8-word XEXE Header */
             fprintf(target_file, "0\n2056\n0\n0\n0\n0\n0\n0\n");
-            fprintf(target_file, "MOV SP, 4159\n");
+            fprintf(target_file, "MOV SP, 4121\n");
 
             codeGen((yyvsp[-2].no));
 

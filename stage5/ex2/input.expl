@@ -1,0 +1,21 @@
+decl
+    tuple profile (str nickname, int age) user1;
+enddecl
+
+int main() {
+    decl
+        tuple profile (str nickname, int age) user2;
+    enddecl
+    begin
+        
+        user1.nickname = "EaZy";
+        user1.age = 20;
+
+        user2 = user1;
+
+        write(user2.nickname);
+        write(user2.age);
+
+        return 0;
+    end
+}

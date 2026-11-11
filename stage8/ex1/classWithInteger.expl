@@ -1,0 +1,30 @@
+type
+    Node {
+        int a;
+    }
+endtype
+
+decl
+    Node obj;
+    int getValue(Node n, int x);
+enddecl
+
+int getValue(Node n, int x) {
+begin
+    return n.a + x;
+end
+}
+
+int main() {
+decl
+    int x;
+enddecl
+begin
+    x = initialize();
+    obj = alloc();
+    obj.a = 42;
+    x = getValue(obj, 8);
+    write(x);
+    return 0;
+end
+}

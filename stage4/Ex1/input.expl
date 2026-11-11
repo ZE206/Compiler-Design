@@ -1,0 +1,19 @@
+decl
+    int matrix[10], i, j, count;
+enddecl
+begin
+    count = 1;
+    
+    i = 0;
+    while(i < 10) do
+        matrix[i] = count;
+        count = count + 1;
+        i = i + 1;
+    endwhile;
+
+    i = 0;
+    while(i < 10) do
+        write(matrix[i]);
+        i = i + 1;
+    endwhile;
+end;

@@ -1,0 +1,28 @@
+decl
+    int n, i, isPrime, temp;
+enddecl
+begin
+    write("Enter number:");
+    read(n);
+    
+    isPrime = 1;
+    if (n <= 1) then
+        isPrime = 0;
+    else
+        i = 2;
+        while (i < n) do
+            temp = (n / i) * i; 
+            if (temp == n) then
+                isPrime = 0;
+                break;
+            endif;
+            i = i + 1;
+        endwhile;
+    endif;
+
+    if (isPrime == 1) then
+        write("Prime!");
+    else
+        write("Not Prime.");
+    endif;
+end;

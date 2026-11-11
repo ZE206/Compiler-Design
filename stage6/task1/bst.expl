@@ -1,0 +1,110 @@
+type
+    bst {
+        int val;
+        bst left;
+        bst right;
+    }
+endtype
+
+decl
+    bst root;
+    bst insert(bst h, int key);
+    int inOrder(bst h);
+    int preOrder(bst h);
+    int postOrder(bst h);
+enddecl
+
+bst insert(bst h, int key) {
+    decl
+        bst temp;
+    enddecl
+    begin
+        if (h == null) then
+            temp = alloc();
+            temp.val = key;
+            temp.left = null;
+            temp.right = null;
+            h = temp;
+        else
+            if (key < h.val) then
+                h.left = insert(h.left, key);
+            else
+                if (key > h.val) then
+                    h.right = insert(h.right, key);
+                endif;
+            endif;
+        endif;
+        return h;
+    end
+}
+
+int inOrder(bst h) {
+    decl
+        int status;
+    enddecl
+    begin
+        if (h != null) then
+            status = inOrder(h.left);
+            write(h.val);
+            status = inOrder(h.right);
+        endif;
+        return 0;
+    end
+}
+
+int preOrder(bst h) {
+    decl
+        int status;
+    enddecl
+    begin
+        if (h != null) then
+            write(h.val);
+            status = preOrder(h.left);
+            status = preOrder(h.right);
+        endif;
+        return 0;
+    end
+}
+
+int postOrder(bst h) {
+    decl
+        int status;
+    enddecl
+    begin
+        if (h != null) then
+            status = postOrder(h.left);
+            status = postOrder(h.right);
+            write(h.val);
+        endif;
+        return 0;
+    end
+}
+
+int main() {
+    decl
+        int n, x, i, status;
+    enddecl
+    begin
+        status = initialize();
+        root = null;
+
+        read(n); /* Number of elements to insert */
+        i = 0;
+        while (i < n) do
+            read(x);
+            root = insert(root, x);
+            i = i + 1;
+        endwhile;
+
+        write("---IN---");
+        status = inOrder(root);
+
+        write("--PRE--");
+        status = preOrder(root);
+
+        write("--POST-");
+        status = postOrder(root);
+
+        return 0;
+    end
+}

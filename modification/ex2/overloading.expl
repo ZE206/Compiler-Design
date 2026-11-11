@@ -1,0 +1,47 @@
+class
+Calculator {
+    decl
+        int compute(int a);
+        int compute(int a, int b);
+    enddecl
+
+    int compute(int a) {
+        decl
+        enddecl
+        begin
+            return a * 10;
+        end
+    }
+
+    int compute(int a, int b) {
+        decl
+        enddecl
+        begin
+            return a + b;
+        end
+    }
+}
+endclass
+
+decl
+    Calculator calc;
+    int res1, res2;
+enddecl
+
+int main() {
+    decl
+    enddecl
+    begin
+        calc = new(Calculator);
+
+        res1 = calc.compute(5);
+        write("compute(5):");
+        write(res1);
+
+        res2 = calc.compute(5, 20);
+        write("compute(5,20):");
+        write(res2);
+
+        return 1;
+    end
+}

@@ -1,0 +1,39 @@
+type
+    student {
+        str name;
+        int marks;
+    }
+endtype
+
+decl
+    student s[3];
+    int n, i, status;
+enddecl
+
+int main() {
+    decl
+    enddecl
+    begin
+        status = initialize();
+
+        read(n);
+        i = 0;
+        while (i < n) do
+            s[i] = alloc();
+            read(s[i].name);
+            read(s[i].marks);
+            i = i + 1;
+        endwhile;
+
+        write("---OUTPUT---");
+        i = 0;
+        while (i < n) do
+            write(s[i].name);
+            write(s[i].marks);
+            free(s[i]);
+            i = i + 1;
+        endwhile;
+
+        return 0;
+    end
+}

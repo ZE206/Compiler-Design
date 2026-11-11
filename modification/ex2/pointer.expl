@@ -1,0 +1,20 @@
+decl
+    int a, *p;
+enddecl
+
+int main()
+{
+    begin
+        a = 10;
+        p = &a;
+
+        write(*p);
+
+        *p = 25;
+
+        write(a);
+        write(*p);
+
+        return 0;
+    end
+}

@@ -1,0 +1,36 @@
+type
+    Node {
+        int a;
+    }
+endtype
+
+decl
+    Node obj1, obj2;
+    int sum(Node n1, Node n2);
+enddecl
+
+int sum(Node n1, Node n2) {
+begin
+    return n1.a + n2.a;
+end
+}
+
+int main() {
+decl
+    int x;
+enddecl
+begin
+    x = initialize();
+
+    obj1 = alloc();
+    obj2 = alloc();
+
+    obj1.a = 10;
+    obj2.a = 25;
+
+    x = sum(obj1, obj2);
+    write(x);
+
+    return 0;
+end
+}
